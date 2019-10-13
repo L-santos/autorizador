@@ -2,6 +2,7 @@ package com.rede.domain;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,6 +15,7 @@ public class Procedimento {
     @GenericGenerator(name = "seq_proc_id", strategy = "increment")
     private Integer id;
 
+    @Column(unique = true)
     private Integer codigo;
 
     public Procedimento() {}

@@ -22,7 +22,7 @@ public class RegraRepository {
        /* String qlString = "select r from Regra r inner join r.procedimento where r.procedimento.codigo = :procedimento"+
                 " and idade = :idade and sexo = :sexo and permitido = true";*/
         String qlString = "from Regra r where r.procedimento.codigo = :procedimento"+
-                " and idade = :idade and sexo = :sexo and permitido = true";
+                " and idade = :idade and sexo = :sexo and permitido = :permitido";
         List<Regra> result = new ArrayList<>();
        // result = manager.createQuery("select r from Regra r inner join r.procedimento where r.procedimento.codigo = 1234", Regra.class).getResultList();
 
@@ -30,6 +30,7 @@ public class RegraRepository {
         query.setParameter("procedimento",  r.getProcedimento().getCodigo());
         query.setParameter("idade", r.getIdade());
         query.setParameter("sexo", r.getSexo());
+        query.setParameter("permitido", r.isPermitido());
         result = query.getResultList();
         //manager.getTransaction().commit();
         LogManager.getLogger().info("Repo Fetch: "+ Arrays.toString(result.toArray()));

@@ -1,6 +1,6 @@
 drop table if exists Regra;
 drop table if exists Procedimento;
-create table Procedimento (id integer not null, codigo integer, primary key (id));
+create table Procedimento (id integer not null, codigo integer unique, primary key (id));
 create table Regra (id integer not null, id_procedimento integer, idade integer, sexo varchar(255), primary key (id), permitido boolean not null);
 alter table Regra add constraint PROCEDIMENTO_ID_FK foreign key (id_procedimento) references Procedimento;
 insert into procedimento values (1, 1234);

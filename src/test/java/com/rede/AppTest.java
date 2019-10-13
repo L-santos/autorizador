@@ -36,14 +36,14 @@ public class AppTest {
         manager = factory.createEntityManager();
 
         //Populate tables
-        try (BufferedReader reader = new BufferedReader(new FileReader("import.sql"))){
+        try (BufferedReader reader = new BufferedReader(new FileReader("import.sql"))) {
             String line;
             manager.getTransaction().begin();
-            while ((line = reader.readLine()) != null){
+            while ((line = reader.readLine()) != null) {
                 manager.createNativeQuery(line).executeUpdate();
             }
             manager.getTransaction().commit();
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -62,7 +62,8 @@ public class AppTest {
 
     @Test
     @Order(2)
-    public void negativa(){
-        assertFalse(new Autorizador().autoriza("1234","10", "F"));
+    public void negativa() {
+        assertFalse(new Autorizador().autoriza("1234", "10", "F"));
     }
+
 }

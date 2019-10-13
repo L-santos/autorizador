@@ -1,6 +1,10 @@
 package com.rede;
 
 import com.rede.autorizador.Autorizador;
+import com.rede.autorizador.Cadastro;
+import com.rede.domain.Procedimento;
+import com.rede.domain.Regra;
+import com.rede.values.Sexo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.*;
@@ -51,13 +55,24 @@ public class AppTest {
     @Test
     @Order(1)
     public void autoriza() {
-        assertTrue(new Autorizador().autoriza("1234", "10", "M"));
+        assertTrue(new Autorizador().autoriza(new Regra(new Procedimento(1234), 10, Sexo.M, true)));
     }
 
     @Test
     @Order(2)
     public void negativa() {
-        assertFalse(new Autorizador().autoriza("1234", "10", "F"));
+        assertFalse(new Autorizador().autoriza(new Regra(new Procedimento(1234), 10, Sexo.F, true)));
+    }
+
+    @Test
+    @Order(3)
+    @Disabled
+    public void criar() {
+        assertTrue(new Autorizador()
+                .autoriza(new Cadastro()
+                        .cadastrar(
+                                new Regra(new Procedimento(899756), 23, Sexo.F, true)
+                        )));
     }
 
 }

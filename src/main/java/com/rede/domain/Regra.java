@@ -28,7 +28,8 @@ public class Regra {
 
     private boolean permitido;
 
-    public Regra() {}
+    public Regra() {
+    }
 
     public Regra(Procedimento procedimento, Integer idade, Sexo sexo, boolean permitido) {
         this.procedimento = procedimento;
@@ -39,6 +40,9 @@ public class Regra {
 
     @Override
     public String toString() {
+        if (procedimento == null) {
+            procedimento = new Procedimento();
+        }
         return String.format("%d %d %s %s", procedimento.getCodigo(), idade, sexo, permitido);
     }
 

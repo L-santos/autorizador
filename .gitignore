@@ -13,3 +13,4 @@ buildNumber.properties
 .class
 *.mv.db
 *.trace.db
+.iml

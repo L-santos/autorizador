@@ -1,6 +1,7 @@
 package com.rede.domain;
 
 import com.rede.values.Sexo;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ public class Regra {
     private Integer id;
 
     @ManyToOne
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @JoinColumn(name = "id_procedimento",
             foreignKey = @ForeignKey(name = "PROCEDIMENTO_ID_FK")
     )
@@ -33,6 +35,11 @@ public class Regra {
         this.idade = idade;
         this.sexo = sexo;
         this.permitido = permitido;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%d %d %s %s", procedimento.getCodigo(), idade, sexo, permitido);
     }
 
     public Integer getId() {
